@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.service.name }}
+  labels:
+    {{- include "backend.labels" . | nindent 4}}
+spec:
+  ports:
+    - nodePort: 30163
+      port: {{ .Values.service.port }}
+      targetPort: {{.Values.service.targetPort }}
+      protocol: TCP
+  selector:
+    {{ include "backend.selectorLabels" . | nindent 4}}
+  type: {{ .Values.service.type }}

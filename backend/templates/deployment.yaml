@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-k8s
+  labels:
+      {{- include "backend.labels" . | nindent 4}}
+spec:
+  selector:
+    matchLabels:
+      {{- include "backend.selectorLabels" . | nindent 6}}
+  replicas: {{.Values.replicaCount}}
+  template:
+    metadata:
+      labels:
+        {{- include "backend.selectorLabels" . | nindent 8}}
+    spec:
+      containers:
+        - name: springboot-k8s
+          image: {{.Values.image.repository}}
+          ports:
+            - containerPort: {{.Values.service.targetPort}}
