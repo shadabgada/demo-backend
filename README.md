@@ -15,3 +15,24 @@ The environment variable name 'Stakater' is specified in docker file
 For kubernetes setup guide please refer this [readme](https://github.com/shadabgada/demo-frontend) of frontend application
 
 
+### Bonus:
+
+Created a helm chart. Its available on branch helm-chart
+
+commands:
+
+- create helm chart
+  > helm create backend
+- view formatted output helm yaml contents
+  > helm template test .\backend\
+- deploy
+  > helm install backend backend/
+
+### Templatized parameters:
+- port
+- docker image
+- service name
+- service type
+- replica count
+- target port
+
